@@ -16,7 +16,6 @@ def get_dog():
     json_data = json.loads(response.text)
     return json_data['message']  # return the dog image url
 
-
 def get_cat():
     # fetch data from cat api
     response = requests.get('https://api.thecatapi.com/v1/images/search')
@@ -57,9 +56,13 @@ class MyClient(discord.Client):
             BotVersion.add_field(name="Date Released",
                                  value="10/26/2022", inline=False)
             BotVersion.add_field(name="Develop By:", value=message.author.name)
-            BotVersion.set_footer(text="I am so fuckin tired")
+            BotVersion.set_footer(text="Breh")
             await message.channel.send(embed=BotVersion)
-
+            ##CoinFlip
+        if message.content.startswith("!coinflip") or message.content.startswith("!flip"):
+            import random
+            result = random.choice(["Heads", "Tails"])
+            await message.channel.send(f"🪙 The coin landed on **{result}**!")
 load_dotenv()
 intents = discord.Intents.default()
 intents.message_content = True
